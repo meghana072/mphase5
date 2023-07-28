@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            background-color: #fff; /* Set the background color to white */
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #337AB7;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px; /* Adjust the maximum width of the table */
+        }
+        
+        th, td {
+            padding: 6px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: transparent; /* Remove the background color for table headers */
+            color: #337AB7;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #E2E2E2;
+        }
+        
+        .btn {
+            padding: 4px 8px; /* Adjust the padding of the buttons */
+            border-radius: 5px;
+            text-decoration: none;
+            color: #FFF;
+        }
+        
+        .btn-primary {
+            background-color: #337AB7;
+        }
+        
+        .btn-danger {
+            background-color: #D9534F;
+        }
+        
+        .add-citizen-btn {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .actions-column {
+            white-space: nowrap; /* Prevent actions from wrapping */
+        }
+    </style>
+</head>
+<body>
+<h1>Citizens</h1>
+<div class="container my-2">
+    <div class="add-citizen-btn">
+        <a th:href="@{/showNewCitizenForm}" class="btn btn-primary">Add Citizen</a>
+    </div>
+    
+    <table border="2">
+        <thead>
+        <tr>
+        <th>id</th>
+            <th> Name</th>
+            <th> City</th>
+            <th> No of Doses</th>
+            <th> Vaccination Status</th>
+            <th>Vaccination Centre</th>
+            <th class="actions-column">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="citizen : ${ListCitizen}">
+        <td th:text="${citizen.id}"></td>
+            <td th:text="${citizen.name}"></td>
+            <td th:text="${citizen.city}"></td>
+            <td th:text="${citizen.doses}"></td>
+            <td th:text="${citizen.status}"></td>
+            <td th:text="${citizen.centre}"></td>
+            <td>
+                <a th:href="@{/viewCitizenDetails/{id}(id=${citizen.id})}" class="btn btn-primary">View</a>
+                <a th:href="@{/showFormForUpdate/{id}(id=${citizen.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/deleteCitizen/{id}(id=${citizen.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    Total Citizens: <span th:text="${totalCount}"></span>
+   
+       
+    </div>
+</div>
+</body>
+</html>

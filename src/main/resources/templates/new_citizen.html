@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Citizen</title>
+    <style>
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #337ab7;
+        }
+        
+        h2 {
+            color: #666;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Citizen</h1>
+        <hr>
+        <h2>Save Citizen</h2>
+        <form th:action="@{/saveCitizen}" th:object="${citizen}" method="POST">
+            <input type="text" th:field="*{name}" placeholder="Citizen Name" class="form-control mb-4 col-4"><br>
+            
+            <select th:field="*{city}" class="form-control mb-4 col-4">
+                <option value="">Select City</option>
+                <option value="Banglore">Banglore</option>
+                <option value="Pune">Pune</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Mumbai">Mumbai</option>
+            </select><br>
+            
+            <input type="text" th:field="*{doses}" placeholder="Number of Doses" class="form-control mb-4 col-4"><br>
+            
+            <select th:field="*{status}" class="form-control mb-4 col-4">
+                <option value="">Select Vaccination Status</option>
+                <option value="Fully Vaccinated">Fully Vaccinated</option>
+                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                <option value="Not Vaccinated">Not Vaccinated</option>
+            </select><br>
+            
+            <select th:field="*{centre}" class="form-control mb-4 col-4">
+                <option value="">Select Vaccination Centre</option>
+                <option value="Centre A">Centre A</option>
+                <option value="Centre B">Centre B</option>
+                <option value="Centre C">Centre C</option>
+            </select><br>
+            
+            <button type="submit" class="btn btn-info col-2">Save Citizen Details</button>
+        </form>
+    </div>
+</body>
+</html>

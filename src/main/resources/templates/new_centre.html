@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Centre Information</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #337ab7;
+        }
+        
+        h2 {
+            color: #666;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <hr>
+        <h2>Add new vaccination center</h2>
+        <form th:action="@{/saveCentre}" th:object="${vaccinationcentre}" method="POST">
+        
+            <input type="text" th:field="*{name}" placeholder="Centre Name" class="form-control mb-4 col-4"><br>
+            <select th:field="*{city}" class="form-control mb-4 col-4">
+                <option value="">Select Centre City</option>
+                <option value="Banglore">Banglore</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Pune">Pune</option>
+            </select><br>
+            <button type="submit" class="btn btn-info col-2">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

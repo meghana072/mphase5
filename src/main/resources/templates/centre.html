@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title></title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            padding: 20px;
+            max-width: 700px; /* Adjust the maximum width of the container */
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+        
+        .btn {
+            padding: 8px 12px; /* Adjust the padding of the buttons */
+            border-radius: 5px;
+            text-decoration: none;
+            color: #FFF;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #337AB7;
+        }
+        
+        .btn-danger {
+            background-color: #D9534F;
+        }
+        
+        .add-center-btn {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        
+        .actions-column {
+            white-space: nowrap; /* Prevent actions from wrapping */
+        }
+    </style>
+</head>
+<body>
+    <h1>Centers</h1>
+    <div class="container my-2">
+        <div class="add-center-btn">
+            <a th:href="@{/showNewCenterForm}" class="btn btn-primary">Add new center</a>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Center Name</th>
+                    <th>Center City</th>
+                    <th class="actions-column">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="centres : ${listVaccinationCentre}">
+                    <td th:text="${centres.id}"></td>
+                    <td th:text="${centres.name}"></td>
+                    <td th:text="${centres.city}"></td>
+                    <td>
+                        <a th:href="@{/viewCentreDetails/{id}(id=${centres.id})}" class="btn btn-primary">View</a>
+                        <a th:href="@{/showFormForEdit/{id}(id=${centres.id})}" class="btn btn-primary">Edit</a>
+                        <a th:href="@{/deleteCentre/{id}(id=${centres.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Total <span th:text="${totalCount}" ></span>  Vaccination Centers found</p>
+    </div>
+</body>
+</html>
